@@ -3,7 +3,7 @@ This project is made with a youtube tutorial and adapted in Composition API and 
 
 ## Documentations  
 
-Passed the transactions list in a prop, with TypeScript syntax:  
+"TransactionList.vue" --> Passed the transactions list in a prop, with TypeScript syntax:  
 
 ```
 <script setup lang="ts">
