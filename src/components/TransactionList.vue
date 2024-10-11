@@ -26,7 +26,7 @@ const deleteTransaction = (id: number) => {
     <ul id="list" class="list">
         <li v-for="transaction in props.transactions" :key="transaction.id" :class="transaction.amount < 0 ? 'minus' : 'plus'">
             <span>{{ transaction.name }}</span>
-            <span>{{ transaction.amount }}</span>
+            <span>{{ transaction.amount }}$</span>
             <button @click="deleteTransaction(transaction.id)" class="delete-btn">x</button>
         </li>
     </ul>
