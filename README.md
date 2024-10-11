@@ -1,5 +1,67 @@
-# Vue 3 + TypeScript + Vite
+# Vue Expense Tracker  
+This project is made with a youtube tutorial and adapted in Composition API and with TypeScript syntax  
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Documentations  
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Passed the transactions list in a prop, with TypeScript syntax:  
+
+```
+<script setup lang="ts">
+import { defineProps } from 'vue';
+
+// TypeScript type values
+interface Transaction {
+        id: number;
+        name: string;
+        amount: number;
+    }
+
+// Defining all props we need
+const props = defineProps<{
+    transactions: Transaction[];
+}>()
+</script>
+
+<template>
+    <h3>History</h3>
+    <ul id="list" class="list">
+        <li v-for="transaction in props.transactions" :key="transaction.id" :class="transaction.amount < 0 ? 'minus' : 'plus'">
+            <span>{{ transaction.name }}</span>
+            <span>{{ transaction.amount }}</span>
+            <button class="delete-btn">x</button>
+        </li>
+    </ul>
+</template>
+
+<style scoped>
+</style>
+```  
+
+And with vanilla Javascript:  
+
+```
+<script setup>
+import { defineProps } from 'vue';
+
+const props = defineProps({
+    transactions: {
+        type: Array,
+        required: true,
+    },
+});
+</script>
+
+<template>
+    <h3>History</h3>
+    <ul id="list" class="list">
+        <li v-for="transaction in props.transactions" :key="transaction.id" :class="transaction.amount < 0 ? 'minus' : 'plus'">
+            <span>{{ transaction.name }}</span>
+            <span>{{ transaction.amount }}</span>
+            <button class="delete-btn">x</button>
+        </li>
+    </ul>
+</template>
+
+<style scoped>
+</style>
+```
