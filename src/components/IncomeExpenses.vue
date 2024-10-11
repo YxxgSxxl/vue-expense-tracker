@@ -23,10 +23,7 @@ const props = defineProps({
         </div>
         <div>
             <h4>Expense</h4>
-            <p id="money-minus" class="money minus">-${{ props.expenses }}</p>
+            <p id="money-minus" class="money minus">-${{ props.expenses * -1 }}</p>
         </div>
     </div>
 </template>
-
-<style scoped>
-</style>

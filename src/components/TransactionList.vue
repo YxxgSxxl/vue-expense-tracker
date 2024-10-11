@@ -24,6 +24,3 @@ const props = defineProps<{
         </li>
     </ul>
 </template>
-
-<style scoped>
-</style>

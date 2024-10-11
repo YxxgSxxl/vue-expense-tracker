@@ -13,6 +13,3 @@ const props = defineProps({
     <h4>Your balance</h4>
     <h1 id="balance">${{ props.total }}</h1>
 </template>
-
-<style scoped>
-</style>

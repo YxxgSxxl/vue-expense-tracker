@@ -7,12 +7,21 @@ import AddTransaction from './components/AddTransaction.vue';
 
 import { ref, computed } from 'vue';
 
+// TypeScript type values
+interface Transaction {
+    id: number;
+    name: string;
+    amount: number;
+}
+
 // Get transactions
-const transactions: any = ref([
-    { id: 1, name: 'Flower', amount: -19.99 },
-    { id: 2, name: 'Salary', amount: 299.99 },
-    { id: 3, name: 'Pudding', amount: -2.99 },
-])
+const transactions = ref<Transaction[]>([])
+
+// const transactions: any = ref([
+//     { id: 1, name: 'Flower', amount: -19.99 },
+//     { id: 2, name: 'Salary', amount: 299.99 },
+//     { id: 3, name: 'Pudding', amount: -2.99 },
+// ])
 
 // Get total
 const total = computed(() => {
