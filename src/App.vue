@@ -21,25 +21,18 @@ const total = computed(() => {
   }, 0)
 });
 
-// Get incomes
-const income = computed(() => {
+const calculateIncomeExpenses = (condition) => {
   return transactions.value
-  .filter((transaction) => transaction.amount > 0)
-  .reduce((acc, transaction) => {
-    return acc + transaction.amount;
-  }, 0)
-  .toFixed(2);
-});
+    .filter(condition)
+    .reduce((acc, transaction) => acc + transaction.amount, 0)
+    .toFixed(2);
+};
+
+// Get incomes
+const income = computed(() => calculateIncomeExpenses(transaction => transaction.amount > 0));
 
 // Get expenses
-const expenses = computed(() => {
-  return transactions.value
-  .filter((transaction) => transaction.amount < 0)
-  .reduce((acc, transaction) => {
-    return acc + transaction.amount;
-  }, 0)
-  .toFixed(2);
-});
+const expenses = computed(() => calculateIncomeExpenses(transaction => transaction.amount < 0));
 </script>
 
 <template>
