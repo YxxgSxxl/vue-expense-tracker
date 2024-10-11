@@ -12,16 +12,17 @@
         if(!name.value || !amount.value) {
             toast.error('Both fields must be filled');
             return;
+        } else if(isNaN(amount.value)) {
+            toast.error('Amount field must be a number (2, 2.5, -2)');
+            return;
         } else {
-
-        }
-
-        const transactionData = {
+            const transactionData = {
             name: name.value,
             amount: parseFloat(amount.value),
-        }
+            }
 
-        emit('transactionSubmitted', transactionData)
+            emit('transactionSubmitted', transactionData)
+        }
     }
 </script>
 
