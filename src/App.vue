@@ -6,6 +6,9 @@ import TransactionList from './components/TransactionList.vue';
 import AddTransaction from './components/AddTransaction.vue';
 
 import { ref, computed } from 'vue';
+import { useToast } from 'vue-toastification';
+
+const toast = useToast();
 
 // TypeScript type values
 interface Transaction {
@@ -23,7 +26,10 @@ const transactions = ref<Transaction[]>([])
 //     { id: 3, name: 'Pudding', amount: -2.99 },
 // ])
 
-// Get total
+/*
+  component: Balance.vue
+  work: Get total
+*/
 const total = computed(() => {
   return transactions.value.reduce((acc, transaction) => {
     return acc + transaction.amount;
@@ -37,11 +43,44 @@ const calculateIncomeExpenses = (condition) => {
     .toFixed(2);
 };
 
-// Get incomes
+/*
+  component: IncomeExpenses.vue
+  work: Get income and expenses
+*/
 const income = computed(() => calculateIncomeExpenses(transaction => transaction.amount > 0));
 
-// Get expenses
 const expenses = computed(() => calculateIncomeExpenses(transaction => transaction.amount < 0));
+
+/*
+  component: AddTransaction.vue
+  work: Generate unique ID
+*/
+const generateUniqueId = (): number => {
+  return Math.floor(Math.random() * 1000000);
+}
+
+/*
+  component: AddTransaction.vue
+  work: Add transactions
+*/
+interface TransactionData {
+  name: string;
+  amount: number;
+}
+
+/*
+  component: AddTransaction.vue
+  work: Handle values of submitted form
+*/
+const handleTransactionSubmitted = (transactionData: TransactionData) => {
+  transactions.value.push({
+    id: generateUniqueId(),
+    name: transactionData.name,
+    amount: transactionData.amount,
+  });
+
+  toast.success('Transaction Added')
+}
 </script>
 
 <template>
@@ -51,10 +90,6 @@ const expenses = computed(() => calculateIncomeExpenses(transaction => transacti
     <Balance :total="total"/>
     <IncomeExpenses :income="+income" :expenses="+expenses"/>
     <TransactionList :transactions="transactions" />
-    <AddTransaction />
+    <AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
   </div>
 </template>
-
-<style scoped>
-
-</style>
