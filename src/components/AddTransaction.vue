@@ -12,7 +12,7 @@
         if(!name.value || !amount.value) {
             toast.error('Both fields must be filled');
             return;
-        } else if(isNaN(amount.value)) {
+        } else if(isNaN(Number(amount.value))) {
             toast.error('Amount field must be a number (2, 2.5, -2)');
             return;
         } else {
