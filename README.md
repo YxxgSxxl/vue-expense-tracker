@@ -1,6 +1,8 @@
 # Vue Expense Tracker  
 This project is made with a youtube tutorial and adapted in Composition API and with TypeScript syntax  
 
+## Status -> Project Done ✔️
+
 ## Documentations  
 
 "TransactionList.vue" --> Passed the transactions list in a prop, with TypeScript syntax:  
