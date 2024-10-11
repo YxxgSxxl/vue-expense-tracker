@@ -38,11 +38,11 @@ const total = computed(() => {
   }, 0)
 });
 
-const calculateIncomeExpenses = (condition) => {
-  return transactions.value
-    .filter(condition)
-    .reduce((acc, transaction) => acc + transaction.amount, 0)
-    .toFixed(2);
+const calculateIncomeExpenses = (condition: (transaction: Transaction) => boolean): string => {
+    return transactions.value
+        .filter(condition)
+        .reduce((acc, transaction) => acc + transaction.amount, 0)
+        .toFixed(2);
 };
 
 /*
@@ -87,7 +87,7 @@ const handleTransactionSubmitted = (transactionData: TransactionData) => {
 }
 
 // Delete transaction
-const handleTransactionDeleted = (id) => {
+const handleTransactionDeleted = (id: number) => {
   transactions.value = transactions.value.filter((transaction) => transaction.id !== id);
 
   saveTransactionsToLocalStorage();
